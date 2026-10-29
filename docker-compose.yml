@@ -1,27 +1,23 @@
 services:
   navidrome:
     image: deluan/navidrome:latest
-    user: 1000:1000 # should be owner of volumes
+    user: 1000:1000
     ports:
-      - target: 4533
-        published: 4533
-        protocol: tcp
-        mode: host
+    - target: 4533
+      published: 4533
+      protocol: tcp
+      mode: host
     deploy:
       placement:
         constraints:
-          - node.labels.deployment.target.subsonic == true
+        - node.labels.deployment.target.subsonic == true
       restart_policy:
         condition: on-failure
     environment:
-      # Optional: put your config options customization here. Examples:
-      # ND_LOGLEVEL: debug
-      #ND_BASEURL: "https://media.echoinggreen.net/"
-      ND_ENABLEINSIGHTSCOLLECTOR: "false"
+      ND_ENABLEINSIGHTSCOLLECTOR: 'false'
     volumes:
-      - nd-swarm:/data
-      - nd-swarm:/cache
-      - /media/Multimedia/Music:/music:ro
+    - navidrome-swarm_nd-swarm:/data
+    - /media/Multimedia/Music:/music:ro
 volumes:
-  nd-swarm:
-  nd-cache:
+  navidrome-swarm_nd-swarm:
+    name: navidrome-swarm_nd-swarm
