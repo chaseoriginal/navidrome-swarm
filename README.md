@@ -8,8 +8,8 @@ deployment and polls this repository for changes.
 | Portainer stack id | 34 |
 | Portainer host | ore-dock-110-4 |
 | Endpoint | - (id -) |
-| Swarm | whofnrgxv5ig |
-| Live service | navidrome-swarm_navidrome |
+| Swarm | True |
+| Live service | svc:navidrome-swarm_navidrome |
 | Git repo | https://github.com/chaseoriginal/navidrome-swarm |
 | Compose file | `docker-compose.yml` |
 | Auto-update poll | every 900s |
@@ -39,8 +39,8 @@ deployment and polls this repository for changes.
 ## Verifying a deployment
 
 ```bash
-docker service ls --filter name=navidrome-swarm_navidrome
-docker service inspect navidrome-swarm_navidrome --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
+docker service ls --filter name=svc:navidrome-swarm_navidrome
+docker service inspect svc:navidrome-swarm_navidrome --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
 ```
 
 A healthy stack shows `1/1` and the same volume names as before.
