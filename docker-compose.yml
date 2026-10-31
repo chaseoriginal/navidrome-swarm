@@ -10,11 +10,18 @@ services:
     deploy:
       placement:
         constraints:
-        - node.labels.deployment.target.subsonic == true
+        - node.hostname==ore-dock-110-6
+        - node.labels.deployment.target.navidrome == true
       restart_policy:
         condition: on-failure
     environment:
       ND_ENABLEINSIGHTSCOLLECTOR: 'false'
+      ND_LOGLEVEL: info
+      ND_SCANSCHEDULE: '1'
+      ND_SESSIONTIMEOUT: 24h
+      PGID: '33'
+      PUID: '1000'
+      TZ: America/Chicago
     volumes:
     - navidrome-swarm_nd-swarm:/data
     - /media/Multimedia/Music:/music:ro
