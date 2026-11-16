@@ -1,6 +1,6 @@
 services:
   navidrome:
-    image: deluan/navidrome:latest
+    image: 0.64.2
     ports:
     - target: 4533
       published: 4533
